@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Modèle de base JSF</title>
+    <!-- Inclusion de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+</h:head>
+<h:body>
+    <div class="container">
+        <h2 class="text-center">
+            Liste des Employes
+        </h2>
+        <h:form>
+            <div class="form-group">
+                <h:commandButton action="#{employeBean.nouveau()}" value="Nouveau Employe" class="btn btn-primary"></h:commandButton>
+            </div>
+
+            <h:dataTable value="#{employeBean.obtenirEmployes()}" var="employe" styleClass="table table-striped">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{employe.id}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nom</f:facet>
+                    <h:outputText value="#{employe.name}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    <h:outputText value="#{employe.email}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Compétences</f:facet>
+                    <h:outputText value="#{employe.skills}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Supprimer</f:facet>
+                    <h:commandButton action="#{employeBean.supprimer(employe.id)}" value="Supprimer" class="btn btn-danger"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </div>
+</h:body>
+</html>
